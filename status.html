@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Configuration</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #a3bddf;
+            /* Light Gray */
+            color: #333;
+            /* Dark Text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, .25);
+            border-radius: 30px;
+            box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25) !important;
+            backdrop-filter: blur(5px);
+            /* White Card */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #fffffff5;
+            /* Light White */
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 50%;
+            padding: 10px;
+            background-color: #3498db;
+            /* Blue Button */
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            /* White Text */
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            /* Darker Blue */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #7f8c8d;
+            /* Gray Text */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Successfully Saved Device Configuration</h1>
+        <button type="button" onclick="handleSubmit(event)">Submit</button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function handleSubmit(event) {
+        event.preventDefault();
+        const checkOut = 10;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/status", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //application/x-www-form-urlencoded
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    alert("Data updated Successfully");
+                    //window.location.href = "/status.html";
+                } else {
+                    alert("Invalid Data");
+                }
+            }
+        };
+
+        const data = "checkOut=" + encodeURIComponent(checkOut)
+        xhr.send(data);
+        console.log(xhr.responseText);
+    }
+
+    // const form = document.querySelector('form');
+    // form.addEventListener('submit', handleSubmit);
+
+</script>
