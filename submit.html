@@ -137,6 +137,7 @@
 <script>
     function handleSubmit(event) {
         event.preventDefault();
+
         const apiToken = document.getElementById('apiToken').value;
         const FactoryCode = document.getElementById('FactoryCode').value;
         const PlantCode = document.getElementById('PlantCode').value;
@@ -150,6 +151,9 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
+                    const formData = { apiToken, FactoryCode, PlantCode, ModuleCode, operatorName }
+                    console.log(formData)
+                    localStorage.setItem("formData", JSON.stringify(formData));
                     alert("Data updated Successfully");
                     window.location.href = "/status.html";
                 } else {
@@ -166,9 +170,6 @@
 
         xhr.send(data);
         console.log(xhr.responseText);
+
     }
-
-    // const form = document.querySelector('form');
-    // form.addEventListener('submit', handleSubmit);
-
 </script>
