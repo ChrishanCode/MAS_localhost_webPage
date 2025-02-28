@@ -125,7 +125,6 @@
         </table>
 
         <br><br>
-
         <button id="button2" onclick="handlback()">Back </button>
         <button id="button1" onclick="handleSubmit()">Confirm</button>
 
@@ -134,7 +133,7 @@
     <script>
 
         function handlback() {
-            window.location.href = "/index.html";
+            window.location.href = "/submit.html";
         }
 
         function loadConfiguration() {
@@ -173,6 +172,7 @@
             };
 
             xhr.send("checkOut=10");
+            window.location.href = "/.html";
         }
         window.onload = loadConfiguration;
     </script>
